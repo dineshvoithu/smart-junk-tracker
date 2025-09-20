@@ -1,4 +1,4 @@
-package com.example.smart_junk_tracker.Service;
+package com.example.smart_junk_tracker.service;
 
 import com.example.smart_junk_tracker.Repository.JunkFoodRepository;
 import com.example.smart_junk_tracker.model.JunkFood;
@@ -17,9 +17,10 @@ public class JunkFoodService {
         return repo.findAll();
     }
 
-    public JunkFood addFoods(JunkFood food){
-        return repo.save(food);
+    public JunkFood addFoods(JunkFood junkFood){
+        return repo.save(junkFood);
     }
+
 
 
 }

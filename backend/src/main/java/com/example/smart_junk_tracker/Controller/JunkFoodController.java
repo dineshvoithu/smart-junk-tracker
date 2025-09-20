@@ -1,6 +1,6 @@
 package com.example.smart_junk_tracker.Controller;
 
-import com.example.smart_junk_tracker.Service.JunkFoodService;
+import com.example.smart_junk_tracker.service.JunkFoodService;
 import com.example.smart_junk_tracker.model.JunkFood;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -19,8 +19,8 @@ public class JunkFoodController {
     }
 
     @PostMapping("/junkfoods")
-    public JunkFood addJunkFood(@RequestBody JunkFood food){
-        return junkFoodService.addFoods(food);
+    public JunkFood addJunkFood(@RequestBody JunkFood junkFood){
+        return junkFoodService.addFoods(junkFood);
     }
 
 
