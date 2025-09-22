@@ -22,5 +22,10 @@ public class JunkFood {
     private int calories;
     private String nutrition;
 
+    private String healthRisks;
+    private String riskLevel;
+    private String riskCategory;
+    private int maxWeeklyLimit;
+
 
 }
