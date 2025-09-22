@@ -21,7 +21,7 @@ public class DataLoader implements CommandLineRunner {
     }
 
     private void loadSampleData() {
-        // Sample Indian Junk Foods with Health Risks
+
 
         JunkFood parotta = new JunkFood();
         parotta.setName("Parotta");

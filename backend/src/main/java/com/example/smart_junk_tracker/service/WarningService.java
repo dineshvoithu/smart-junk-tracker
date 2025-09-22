@@ -78,7 +78,7 @@ public class WarningService {
         // CHECK DAILY QUANTITY FIRST (Most immediate risk)
         if (todayQuantity >= 3) {
             return String.format(
-                    "🔴 EXCESSIVE QUANTITY TODAY!\n" +
+                    "EXCESSIVE QUANTITY TODAY!\n" +
                             "You ate %d %s today - That's dangerous!\n" +
                             "Health Risk: %s\n" +
                             "Recommended: Maximum 1-2 per day\n" +
@@ -88,7 +88,7 @@ public class WarningService {
 
         if (consecutiveDays >= 3) {
             return String.format(
-                    "🔴 CRITICAL PATTERN DETECTED\n" +
+                    "CRITICAL PATTERN DETECTED\n" +
                             "Food: %s (%d+ consecutive days)\n" +
                             "Health Risks: %s\n" +
                             "Immediate Alternatives: %s",
@@ -96,7 +96,7 @@ public class WarningService {
         }
         else if (consecutiveDays == 2) {
             return String.format(
-                    "⚠️ CONSECUTIVE EATING ALERT\n" +
+                    "CONSECUTIVE EATING ALERT\n" +
                             "Food: %s (2 days in a row)\n" +
                             "Health Risk: %s\n" +
                             "Try Instead: %s",
@@ -104,7 +104,7 @@ public class WarningService {
         }
         else if (weeklyCount > junkFood.getMaxWeeklyLimit()) {
             return String.format(
-                    "📊 WEEKLY LIMIT EXCEEDED\n" +
+                    "WEEKLY LIMIT EXCEEDED\n" +
                             "Food: %s (%d times this week)\n" +
                             "Recommended: Limit to %d times/week\n" +
                             "Alternatives: %s",

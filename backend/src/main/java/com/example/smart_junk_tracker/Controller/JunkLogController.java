@@ -21,19 +21,19 @@ public class JunkLogController {
 
     @PostMapping
     public Map<String, Object> addLog(@RequestBody JunkLog junkLog) {
-        // Save the log first
+        // log first saving
         JunkLog savedLog = junkLogService.addLog(junkLog);
 
         // Get user and food details
         Long userId = savedLog.getUserId();
         Long foodId = savedLog.getJunkFood().getId();
 
-        // Use your service methods to get pattern data
+        // pattern data
         int consecutiveDays = warningService.getConsecutiveDays(userId, foodId);
         int weeklyCount = warningService.getWeeklyCount(userId, foodId);
         int todayQuantity = savedLog.getQuantity();
 
-        // Generate warning using your service method
+        // Generate warning
         String warning = warningService.generateWarningMessage(
                 savedLog.getJunkFood(),
                 consecutiveDays,
@@ -41,7 +41,7 @@ public class JunkLogController {
                 todayQuantity
         );
 
-        // Return response with warning
+        // Return warning
         Map<String, Object> response = new HashMap<>();
         response.put("log", savedLog);
         response.put("warning", warning);
