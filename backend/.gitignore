@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Ignore production config with passwords
+src/main/resources/application-prod.properties
