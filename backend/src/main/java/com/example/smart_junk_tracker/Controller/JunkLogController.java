@@ -61,4 +61,11 @@ public class JunkLogController {
         LocalDate localDate = LocalDate.parse(date);
         return junkLogService.getLogsByUserAndDate(userId, localDate);
     }
+
+    // Add this endpoint to your existing JunkLogController class
+    @GetMapping("/total-calories")
+    public Map<String, Object> getTotalCalories() {
+        return junkLogService.getTotalCaloriesData();
+    }
+
 }

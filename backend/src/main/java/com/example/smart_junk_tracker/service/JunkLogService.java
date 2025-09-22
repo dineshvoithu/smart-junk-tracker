@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -43,4 +45,22 @@ public class JunkLogService {
         LocalDateTime endOfDay = date.atTime(LocalTime.MAX);
         return repo.findByUserIdAndLoggedAtBetween(userId, startOfDay, endOfDay);
     }
+
+    // Add this method to your existing JunkLogService class
+    public Map<String, Object> getTotalCaloriesData() {
+        List<JunkLog> allLogs = repo.findAll();
+
+        int totalCalories = allLogs.stream()
+                .mapToInt(JunkLog::getTotalCalories)
+                .sum();
+
+        long totalItems = allLogs.size();
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("totalCalories", totalCalories);
+        result.put("totalItems", totalItems);
+
+        return result;
+    }
+
 }
