@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const FoodModal = ({ food, isOpen, onClose, onSuccess }) => {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
 
@@ -10,7 +11,7 @@ const FoodModal = ({ food, isOpen, onClose, onSuccess }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:8080/api/logs", {
+      const response = await axios.post(`${API_BASE_URL}/api/logs`, {
         userId: 1,
         quantity: quantity,
         junkFood: {

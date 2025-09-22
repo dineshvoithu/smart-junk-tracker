@@ -4,6 +4,7 @@ import FoodModal from "./FoodModal";
 import WarningAlert from "./WarningAlert";
 
 const FoodList = () => {
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080";
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedFood, setSelectedFood] = useState(null);
@@ -16,7 +17,7 @@ const FoodList = () => {
 
   const fetchFoods = async () => {
     try {
-      const response = await axios.get("http://localhost:8080/api/junkfoods");
+      const response = await axios.get(`${API_BASE_URL}/api/junkfoods`);
       setFoods(response.data);
       setLoading(false);
     } catch (error) {
