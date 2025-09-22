@@ -154,7 +154,6 @@ const FoodList = () => {
         </p>
       </div>
 
-      {/* Modal and Warning Components */}
       {selectedFood && (
         <FoodModal
           food={selectedFood}
