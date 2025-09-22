@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import FoodModal from "./FoodModal";
+import WarningAlert from "./WarningAlert";
 
 const FoodList = () => {
   const [foods, setFoods] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedFood, setSelectedFood] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [warning, setWarning] = useState(null);
 
   useEffect(() => {
     fetchFoods();
@@ -41,6 +46,23 @@ const FoodList = () => {
         return "bg-orange-50 border border-orange-200 text-orange-800";
       default:
         return "bg-yellow-50 border border-yellow-200 text-yellow-800";
+    }
+  };
+
+  const handleFoodClick = (food) => {
+    setSelectedFood(food);
+    setShowModal(true);
+  };
+
+  const handleLogSuccess = (response) => {
+    console.log("Log response:", response);
+
+    // Show warning if exists
+    if (response.warning) {
+      setWarning(response.warning);
+    } else {
+      // Show success message
+      alert("Food logged successfully! 🎉");
     }
   };
 
@@ -113,7 +135,10 @@ const FoodList = () => {
                   <span className="mr-2">📅</span>
                   Max {food.maxWeeklyLimit} times/week
                 </div>
-                <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 shadow-sm">
+                <button
+                  onClick={() => handleFoodClick(food)}
+                  className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 shadow-sm"
+                >
                   I ate this! 🍴
                 </button>
               </div>
@@ -127,6 +152,21 @@ const FoodList = () => {
           💪 <strong>Remember:</strong> It's all about balance, not perfection!
         </p>
       </div>
+
+      {/* Modal and Warning Components */}
+      {selectedFood && (
+        <FoodModal
+          food={selectedFood}
+          isOpen={showModal}
+          onClose={() => {
+            setShowModal(false);
+            setSelectedFood(null);
+          }}
+          onSuccess={handleLogSuccess}
+        />
+      )}
+
+      <WarningAlert warning={warning} onClose={() => setWarning(null)} />
     </div>
   );
 };
